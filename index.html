@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51Talk Academy Curriculum Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS 变量定义 - 严格遵循视觉规范 */
+        :root {
+            --primary-blue: #26B7FF;
+            --accent-yellow: #FDE700;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-white: #FFFFFF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F6F6F6;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 80px 20px; /* 模块留白 80px */
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 容器规范 */
+        .container {
+            max-width: 1140px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* 字体层级 */
+        h1 {
+            font-weight: 800; /* Bold */
+            font-size: 41px;  /* 主标题 */
+            color: var(--text-primary);
+            margin: 0 0 16px 0;
+            letter-spacing: -0.5px;
+        }
+
+        p.subtitle {
+            font-weight: 400; /* Regular */
+            font-size: 20px;  /* 副标题 */
+            color: var(--text-secondary);
+            margin: 0 0 80px 0; /* 区块间距 */
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px; /* 常用间距 32px */
+            padding: 0 10px;
+        }
+
+        /* 卡片组件规范 */
+        .card {
+            background-color: var(--bg-primary);
+            border-radius: 20px;
+            padding: 40px 32px; /* 内边距调整 */
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* 阴影 0-10px */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 卡片悬停效果 - 使用主蓝色 */
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(38, 183, 255, 0.15);
+        }
+
+        /* 主要按钮样式 (用于 Level 标签) CTA */
+        .level-tag {
+            background-color: var(--accent-yellow);
+            color: var(--text-primary);
+            font-weight: 600; /* Semibold */
+            font-size: 16px;
+            padding: 12px 25px;
+            border-radius: 50px; /* 胶囊形状 */
+            margin-bottom: 24px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(253, 231, 0, 0.3);
+        }
+
+        /* 标题文字 */
+        .card h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin: 0 0 16px 0;
+        }
+
+        /* 描述文字 */
+        .level-desc {
+            font-size: 14px; /* 小字 */
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .cefr-badge {
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: 4px 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+            p.subtitle { font-size: 16px; margin-bottom: 40px; }
+            .card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>51Talk Academy Outcomes</h1>
+    <p class="subtitle">Scientific Curriculum Design for Quantifiable Excellence</p>
+
+    <div class="grid">
+        <a href="L1-page.html" class="card">
+            <span class="level-tag">Start Here</span>
+            <h2>Level 1</h2>
+            <div class="level-desc">Identification & Basics</div>
+            <div class="cefr-badge">CEFR Pre-A1</div>
+        </a>
+
+        <a href="L2-page.html" class="card">
+            <span class="level-tag">Step Up</span>
+            <h2>Level 2</h2>
+            <div class="level-desc">Simple Narratives</div>
+            <div class="cefr-badge">CEFR A2</div>
+        </a>
+
+        <a href="L3-page.html" class="card">
+            <span class="level-tag">Intermediate</span>
+            <h2>Level 3</h2>
+            <div class="level-desc">Independent Speech</div>
+            <div class="cefr-badge">CEFR A2+</div>
+        </a>
+
+        <a href="L4-page.html" class="card">
+            <span class="level-tag">Advanced</span>
+            <h2>Level 4</h2>
+            <div class="level-desc">Social Advocacy</div>
+            <div class="cefr-badge">CEFR B1</div>
+        </a>
+
+        <a href="L5-page.html" class="card">
+            <span class="level-tag">Expert</span>
+            <h2>Level 5</h2>
+            <div class="level-desc">Professional Fluency</div>
+            <div class="cefr-badge">CEFR B1+</div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

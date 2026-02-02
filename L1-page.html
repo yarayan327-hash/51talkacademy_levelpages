@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51Talk Academy: Level 1 Outcomes</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-teal: #00b5ad; 
+            --accent-yellow: #ffd400;
+            --soft-bg: #f8fdfc;
+            --dark-navy: #1a2a3a;
+            --white: #ffffff;
+            --light-border: #e2e8f0;
+        }
+        
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            background: var(--soft-bg); 
+            color: var(--dark-navy); 
+            margin: 0; 
+            padding: 20px; 
+            line-height: 1.6; 
+            transition: all 0.3s ease;
+        }
+
+        /* 阿拉伯语特定样式 */
+        body.rtl {
+            font-family: 'Cairo', sans-serif; /* 阿拉伯语字体 */
+            direction: rtl;
+        }
+
+        .container { max-width: 1100px; margin: auto; background: var(--white); padding: 50px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,181,173,0.12); position: relative; }
+        
+        /* 语言切换按钮样式 */
+        .lang-switch-wrapper {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        body.rtl .lang-switch-wrapper {
+            right: auto;
+            left: 30px;
+        }
+        .lang-btn {
+            background: white;
+            border: 2px solid var(--primary-teal);
+            color: var(--primary-teal);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            background: var(--primary-teal);
+            color: white;
+        }
+
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { color: var(--primary-teal); font-size: 3rem; margin: 0; letter-spacing: -1px; }
+        .subtitle { color: #64748b; font-size: 1.3rem; margin-top: 10px; }
+
+        /* Section 1: Interactive Metrics */
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-bottom: 40px; }
+        .metric-card { 
+            background: var(--white); border: 2px solid var(--light-border); padding: 35px 20px; border-radius: 25px; 
+            text-align: center; transition: all 0.4s ease; cursor: pointer; position: relative;
+        }
+        .metric-card:hover { border-color: var(--primary-teal); transform: translateY(-8px); }
+        .metric-card .num { font-size: 3.5rem; font-weight: 900; color: var(--primary-teal); display: block; line-height: 1; margin-bottom: 10px; }
+        .metric-card .label { font-size: 1rem; font-weight: 700; color: #475569; text-transform: uppercase; }
+
+        .hover-detail { 
+            display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); 
+            width: 320px; background: var(--dark-navy); color: var(--white); padding: 25px; 
+            border-radius: 20px; font-size: 0.95rem; text-align: left; z-index: 100; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        /* RTL 模式下的 Hover 调整 */
+        body.rtl .hover-detail {
+            text-align: right;
+        }
+        .metric-card:hover .hover-detail { display: block; }
+
+        /* Section 2: ENLARGED INTERNAL LEARNING LOOP */
+        .loop-section { background: #f0fffe; border: 2px solid var(--primary-teal); padding: 40px; border-radius: 30px; margin-bottom: 60px; }
+        .loop-header { text-align: center; margin-bottom: 35px; }
+        .loop-header h2 { color: var(--primary-teal); font-size: 2.2rem; margin: 0; }
+        .loop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+        .loop-card { background: white; padding: 25px 15px; border-radius: 20px; text-align: center; border: 1.5px solid #d1eeed; box-shadow: 0 4px 10px rgba(0,181,173,0.05); }
+        .loop-icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+        .loop-card h4 { color: var(--primary-teal); margin: 0 0 10px 0; font-size: 1.1rem; }
+        .loop-card p { font-size: 0.85rem; color: #576574; margin: 0; font-weight: 500; }
+        
+        /* Section 3: The 5 Stages of Mastery */
+        .stage-title { color: var(--primary-teal); font-size: 1.8rem; margin: 40px 0 20px; text-align: center; }
+        .stages-flex { display: flex; flex-direction: column; gap: 12px; margin-bottom: 60px; }
+        .stage-item { display: grid; grid-template-columns: 80px 1fr; align-items: center; background: white; border: 1.5px solid var(--light-border); padding: 15px 25px; border-radius: 20px; }
+        .stage-tag { font-weight: 800; color: var(--primary-teal); font-size: 1.2rem; }
+        .stage-info { display: flex; gap: 10px; flex-wrap: wrap; }
+        .topic-pill { background: #e0f7f6; color: var(--primary-teal); padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+
+        /* Section 4: Benchmarking & Skills Radar */
+        .academic-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 60px; }
+        .outcomes-box { background: white; border: 2px solid var(--light-border); padding: 30px; border-radius: 30px; }
+        .outcomes-box h3 { color: var(--primary-teal); margin-top: 0; border-bottom: 3px solid var(--accent-yellow); display: inline-block; }
+        .chart-box { background: white; border: 2px solid var(--light-border); padding: 20px; border-radius: 30px; display: flex; justify-content: center; }
+        
+        /* RTL 下列表样式调整 */
+        body.rtl ul { padding-right: 20px; padding-left: 0; }
+
+        /* Section 5: Level 2 Horizon */
+        .level2-footer { background: var(--dark-navy); color: white; padding: 50px; border-radius: 30px; text-align: center; }
+        .level2-footer h2 { color: var(--primary-teal); font-size: 2.2rem; margin-bottom: 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .footer-item { border-top: 2px solid var(--primary-teal); padding-top: 15px; }
+        .footer-item h5 { color: var(--accent-yellow); font-size: 1.1rem; margin: 0 0 10px 0; }
+        .footer-item p { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .metrics-grid, .loop-grid, .academic-row, .footer-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px; }
+            .lang-switch-wrapper { position: relative; top: 0; right: 0; text-align: center; margin-bottom: 20px; }
+            body.rtl .lang-switch-wrapper { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="lang-switch-wrapper">
+        <button class="lang-btn" onclick="toggleLanguage()">Switch to Arabic / العربية</button>
+    </div>
+
+    <header>
+        <h1 data-key="mainTitle">51Talk Academy L1</h1>
+        <p class="subtitle" data-key="mainSubtitle">Scientific Curriculum Design for Quantifiable Excellence</p>
+    </header>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="num">125</span>
+            <span class="label" data-key="metric1Label">Lessons 📖</span>
+            <div class="hover-detail">
+                <strong data-key="metric1HoverTitle">First 5 Lessons:</strong>
+                <ul>
+                    <li data-key="metric1Li1">L1: Alphabet, Numbers & Days</li>
+                    <li data-key="metric1Li2">L2: Classroom Objects & Grammar</li>
+                    <li data-key="metric1Li3">L3: Spelling & Personal Info</li>
+                    <li data-key="metric1Li4">L4: Countries & Nationalities</li>
+                    <li data-key="metric1Li5">L5: Review & Stage Test 1</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-card">
+            <span class="num">5</span>
+            <span class="label" data-key="metric2Label">Learning Stages 🔄</span>
+            <div class="hover-detail">
+                <strong data-key="metric2HoverTitle">Progressive Themes:</strong>
+                <ul>
+                    <li data-key="metric2Li1">Stage 1: Foundations (Self/Family)</li>
+                    <li data-key="metric2Li2">Stage 2: Daily Life (Food/School)</li>
+                    <li data-key="metric2Li3">Stage 3: Activities (Health/Tech)</li>
+                    <li data-key="metric2Li4">Stage 4: Community (Travel/Retail)</li>
+                    <li data-key="metric2Li5">Stage 5: World View (Nature/Culture)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-card">
+            <span class="num">20</span>
+            <span class="label" data-key="metric3Label">Unit Topics 🌍</span>
+            <div class="hover-detail">
+                <strong data-key="metric3HoverTitle">First 5 Units:</strong>
+                <ul>
+                    <li data-key="metric3Li1">U0: Classroom Basics</li>
+                    <li data-key="metric3Li2">U1: All About Me</li>
+                    <li data-key="metric3Li3">U2: Family & Feelings</li>
+                    <li data-key="metric3Li4">U3: My Home & Rooms</li>
+                    <li data-key="metric3Li5">U4: School Bag & Belongings</li>
+                </ul>
+            </div>
+        </div>
+        <div class="metric-card">
+            <span class="num">A1</span>
+            <span class="label" data-key="metric4Label">CEFR Mastery 🏅</span>
+            <div class="hover-detail">
+                <strong data-key="metric4HoverTitle">International Alignment:</strong>
+                <ul>
+                    <li data-key="metric4Li1">Saudi Public G4-G6 Goal</li>
+                    <li data-key="metric4Li2">Int'l School G1-G2 Goal</li>
+                    <li data-key="metric4Li3">Cambridge Pre-A1 Standard</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="loop-section">
+        <div class="loop-header">
+            <h2 data-key="loopTitle">Internal Learning Loop Design</h2>
+            <p style="color: #576574;" data-key="loopSubtitle">A Scientific 5-Step Cycle for Guaranteed Retention</p>
+        </div>
+        <div class="loop-grid">
+            <div class="loop-card">
+                <span class="loop-icon">📥</span>
+                <h4 data-key="loop1Title">Input 1 & 2</h4>
+                <p data-key="loop1Desc">Knowledge Acquisition: Vocabulary & Grammar Building</p>
+            </div>
+            <div class="loop-card" style="border-color: var(--accent-yellow);">
+                <span class="loop-icon">📤</span>
+                <h4 data-key="loop2Title">Output 1 & 2</h4>
+                <p data-key="loop2Desc">Skill Application: Listening, Speaking & Applied Writing</p>
+            </div>
+            <div class="loop-card">
+                <span class="loop-icon">🔄</span>
+                <h4 data-key="loop3Title">Review</h4>
+                <p data-key="loop3Desc">Systematic Consolidation: Closing the Knowledge Loop</p>
+            </div>
+            <div class="loop-card">
+                <span class="loop-icon">🌟</span>
+                <h4 data-key="loop4Title">Life Skills</h4>
+                <p data-key="loop4Desc">Practical Competency: Innovation, ICT & Global Culture</p>
+            </div>
+            <div class="loop-card" style="background: var(--primary-teal); color: white;">
+                <span class="loop-icon">🏆</span>
+                <h4 style="color: white;" data-key="loop5Title">Final Test</h4>
+                <p style="color: white;" data-key="loop5Desc">Outcome Assessment & Proficiency Report</p>
+            </div>
+        </div>
+    </section>
+
+    <h3 class="stage-title" data-key="stageSectionTitle">5 Stages of Level 1 Content</h3>
+    <div class="stages-flex">
+        <div class="stage-item"><span class="stage-tag">S1</span><div class="stage-info"><span class="topic-pill" data-key="stage1a">Self-Intro</span><span class="topic-pill" data-key="stage1b">Family</span><span class="topic-pill" data-key="stage1c">Home</span></div></div>
+        <div class="stage-item"><span class="stage-tag">S2</span><div class="stage-info"><span class="topic-pill" data-key="stage2a">Abilities</span><span class="topic-pill" data-key="stage2b">Food</span><span class="topic-pill" data-key="stage2c">School</span></div></div>
+        <div class="stage-item"><span class="stage-tag">S3</span><div class="stage-info"><span class="topic-pill" data-key="stage3a">Health</span><span class="topic-pill" data-key="stage3b">Technology</span><span class="topic-pill" data-key="stage3c">Professions</span></div></div>
+        <div class="stage-item"><span class="stage-tag">S4</span><div class="stage-info"><span class="topic-pill" data-key="stage4a">Places</span><span class="topic-pill" data-key="stage4b">Transportation</span><span class="topic-pill" data-key="stage4c">Shopping</span></div></div>
+        <div class="stage-item"><span class="stage-tag">S5</span><div class="stage-info"><span class="topic-pill" data-key="stage5a">World View</span><span class="topic-pill" data-key="stage5b">Nature</span><span class="topic-pill" data-key="stage5c">Culture</span></div></div>
+    </div>
+
+    <div class="academic-row">
+        <div class="outcomes-box">
+            <h3 data-key="acadBoxTitle">Academic Performance</h3>
+            <p style="font-size: 0.95rem;"><strong data-key="acadText1Bold">51Talk Academy L1</strong> <span data-key="acadText1">covers 100% of</span> <strong data-key="acadText2Bold">Saudi Public G4-G6</strong> <span data-key="acadText2">requirements and serves as a vital supplement for</span> <strong data-key="acadText3Bold">International G1-G2</strong> <span data-key="acadText3">curricula.</span></p>
+            <p style="font-size: 0.9rem; font-weight: bold; color: var(--primary-teal);" data-key="keyOutputs">Key Practical Outputs:</p>
+            <ul style="font-size: 0.85rem; padding-left: 20px;">
+                <li data-key="outputLi1">Identify 800+ vocabulary across 20 global themes</li>
+                <li data-key="outputLi2">Write formatted blogs, party invitations, and reviews</li>
+                <li data-key="outputLi3">Master ICT literacy and internet safety skills</li>
+                <li data-key="outputLi4">Compare UK, USA, and NZ cultures with local perspectives</li>
+            </ul>
+        </div>
+        <div class="chart-box">
+            <canvas id="radarChart" width="350" height="350"></canvas>
+        </div>
+    </div>
+
+    <div class="level2-footer">
+        <h2 data-key="footerTitle">Advancing to Level 2</h2>
+        <p style="opacity: 0.9; margin-bottom: 30px;" data-key="footerSubtitle">Transitioning from Basic Identification to Narrative Fluency (CEFR A2)</p>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h5 data-key="foot1Title">Linguistic Shift</h5>
+                <p data-key="foot1Desc">Mastering Past Tenses for storytelling and personal history.</p>
+            </div>
+            <div class="footer-item">
+                <h5 data-key="foot2Title">Social Interaction</h5>
+                <p data-key="foot2Desc">Engaging in sustained social interaction and detailed opinions.</p>
+            </div>
+            <div class="footer-item">
+                <h5 data-key="foot3Title">Exam Target</h5>
+                <p data-key="foot3Desc">Comprehensive preparation for the Cambridge KET (A2) standard.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="lang-data.js"></script>
+<script src="lang-logic.js"></script>
+
+</body>
+</html>
