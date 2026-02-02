@@ -5,135 +5,235 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>51Talk Academy: Level 1 Outcomes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        /* ================= 视觉规范系统 (Strict Visual Identity) ================= */
         :root {
-            --primary-teal: #00b5ad; 
-            --accent-yellow: #ffd400;
-            --soft-bg: #f8fdfc;
-            --dark-navy: #1a2a3a;
-            --white: #ffffff;
-            --light-border: #e2e8f0;
+            /* 核心色板 */
+            --primary-blue: #26B7FF;
+            --accent-yellow: #FDE700;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-light-gray: #999999;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F6F6F6;
+            --price-red: #FF4D4F; 
+            
+            /* 衍生辅助色 */
+            --blue-light: rgba(38, 183, 255, 0.08);
+            --blue-shadow: rgba(38, 183, 255, 0.2);
+            --yellow-shadow: rgba(253, 231, 0, 0.4);
+            --green-success: #4ADE80;
         }
         
         body { 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
-            background: var(--soft-bg); 
-            color: var(--dark-navy); 
+            font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif; 
+            background: var(--bg-secondary); 
+            color: var(--text-primary); 
             margin: 0; 
-            padding: 20px; 
+            padding: 40px 20px; 
             line-height: 1.6; 
-            transition: all 0.3s ease;
+            overflow-x: hidden;
         }
 
-        /* 阿拉伯语特定样式 */
-        body.rtl {
-            font-family: 'Cairo', sans-serif; /* 阿拉伯语字体 */
-            direction: rtl;
-        }
+        /* RTL Support */
+        body.rtl { font-family: 'Cairo', sans-serif; direction: rtl; }
 
-        .container { max-width: 1100px; margin: auto; background: var(--white); padding: 50px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,181,173,0.12); position: relative; }
+        /* 容器规范 */
+        .container { 
+            max-width: 1140px; margin: 0 auto; background: var(--bg-primary); 
+            padding: 60px 50px; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.03); 
+            position: relative; 
+        }
         
-        /* 语言切换按钮样式 */
-        .lang-switch-wrapper {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-        body.rtl .lang-switch-wrapper {
-            right: auto;
-            left: 30px;
-        }
+        /* 语言切换按钮 */
+        .lang-switch-wrapper { position: absolute; top: 40px; right: 40px; z-index: 100; }
+        body.rtl .lang-switch-wrapper { right: auto; left: 40px; }
         .lang-btn {
-            background: white;
-            border: 2px solid var(--primary-teal);
-            color: var(--primary-teal);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
+            background: var(--bg-primary); border: 2px solid var(--primary-blue); color: var(--primary-blue);
+            padding: 10px 24px; border-radius: 50px; font-weight: 600; 
+            font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s; 
         }
-        .lang-btn:hover {
-            background: var(--primary-teal);
-            color: white;
-        }
+        .lang-btn:hover { background: var(--primary-blue); color: white; box-shadow: 0 5px 15px var(--blue-shadow); }
 
-        header { text-align: center; margin-bottom: 50px; }
-        h1 { color: var(--primary-teal); font-size: 3rem; margin: 0; letter-spacing: -1px; }
-        .subtitle { color: #64748b; font-size: 1.3rem; margin-top: 10px; }
+        /* 头部样式 */
+        header { text-align: center; margin-bottom: 60px; margin-top: 20px; }
+        h1 { color: var(--primary-blue); font-size: 41px; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -1px; }
+        .subtitle { color: var(--text-secondary); font-size: 20px; font-weight: 400; margin-top: 0; }
 
-        /* Section 1: Interactive Metrics */
-        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-bottom: 40px; }
+        /* ================= Metric Cards ================= */
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 80px; }
         .metric-card { 
-            background: var(--white); border: 2px solid var(--light-border); padding: 35px 20px; border-radius: 25px; 
-            text-align: center; transition: all 0.4s ease; cursor: pointer; position: relative;
+            background: var(--bg-primary); border: 2px solid #F0F0F0; padding: 32px 20px; 
+            border-radius: 20px; text-align: center; transition: all 0.3s ease; cursor: pointer; position: relative;
         }
-        .metric-card:hover { border-color: var(--primary-teal); transform: translateY(-8px); }
-        .metric-card .num { font-size: 3.5rem; font-weight: 900; color: var(--primary-teal); display: block; line-height: 1; margin-bottom: 10px; }
-        .metric-card .label { font-size: 1rem; font-weight: 700; color: #475569; text-transform: uppercase; }
-
+        .metric-card:hover { border-color: var(--primary-blue); transform: translateY(-8px); box-shadow: 0 15px 30px var(--blue-shadow); }
+        .metric-card .num { font-size: 48px; font-weight: 800; color: var(--primary-blue); display: block; line-height: 1; margin-bottom: 10px; }
+        .metric-card .label { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        
         .hover-detail { 
             display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); 
-            width: 320px; background: var(--dark-navy); color: var(--white); padding: 25px; 
-            border-radius: 20px; font-size: 0.95rem; text-align: left; z-index: 100; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 280px; background: var(--text-primary); color: white; padding: 24px; 
+            border-radius: 20px; font-size: 14px; text-align: left; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        /* RTL 模式下的 Hover 调整 */
-        body.rtl .hover-detail {
-            text-align: right;
-        }
+        body.rtl .hover-detail { text-align: right; }
         .metric-card:hover .hover-detail { display: block; }
 
-        /* Section 2: ENLARGED INTERNAL LEARNING LOOP */
-        .loop-section { background: #f0fffe; border: 2px solid var(--primary-teal); padding: 40px; border-radius: 30px; margin-bottom: 60px; }
-        .loop-header { text-align: center; margin-bottom: 35px; }
-        .loop-header h2 { color: var(--primary-teal); font-size: 2.2rem; margin: 0; }
-        .loop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
-        .loop-card { background: white; padding: 25px 15px; border-radius: 20px; text-align: center; border: 1.5px solid #d1eeed; box-shadow: 0 4px 10px rgba(0,181,173,0.05); }
-        .loop-icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
-        .loop-card h4 { color: var(--primary-teal); margin: 0 0 10px 0; font-size: 1.1rem; }
-        .loop-card p { font-size: 0.85rem; color: #576574; margin: 0; font-weight: 500; }
+        /* ================= Loop Section ================= */
+        .loop-section { 
+            background: var(--blue-light); border: 2px solid var(--primary-blue); 
+            padding: 50px; border-radius: 30px; margin-bottom: 80px; 
+        }
+        .loop-header { text-align: center; margin-bottom: 40px; }
+        .loop-header h2 { color: var(--primary-blue); font-size: 32px; font-weight: 800; margin: 0 0 10px 0; }
+        .loop-header p { color: var(--text-secondary); font-size: 16px; }
         
-        /* Section 3: The 5 Stages of Mastery */
-        .stage-title { color: var(--primary-teal); font-size: 1.8rem; margin: 40px 0 20px; text-align: center; }
-        .stages-flex { display: flex; flex-direction: column; gap: 12px; margin-bottom: 60px; }
-        .stage-item { display: grid; grid-template-columns: 80px 1fr; align-items: center; background: white; border: 1.5px solid var(--light-border); padding: 15px 25px; border-radius: 20px; }
-        .stage-tag { font-weight: 800; color: var(--primary-teal); font-size: 1.2rem; }
-        .stage-info { display: flex; gap: 10px; flex-wrap: wrap; }
-        .topic-pill { background: #e0f7f6; color: var(--primary-teal); padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+        .loop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+        .loop-card { 
+            background: white; padding: 24px 16px; border-radius: 20px; text-align: center; 
+            border: 1px solid rgba(38, 183, 255, 0.2); box-shadow: 0 4px 10px rgba(0,0,0,0.03); 
+        }
+        .loop-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+        .loop-card h4 { color: var(--primary-blue); margin: 0 0 8px 0; font-size: 16px; font-weight: 800; }
+        .loop-card p { font-size: 12px; color: var(--text-secondary); margin: 0; font-weight: 500; line-height: 1.4; }
 
-        /* Section 4: Benchmarking & Skills Radar */
-        .academic-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 60px; }
-        .outcomes-box { background: white; border: 2px solid var(--light-border); padding: 30px; border-radius: 30px; }
-        .outcomes-box h3 { color: var(--primary-teal); margin-top: 0; border-bottom: 3px solid var(--accent-yellow); display: inline-block; }
-        .chart-box { background: white; border: 2px solid var(--light-border); padding: 20px; border-radius: 30px; display: flex; justify-content: center; }
-        
-        /* RTL 下列表样式调整 */
+        /* ================= Academic / Radar (Positioned Above Builder) ================= */
+        .academic-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
+        .outcomes-box { background: var(--bg-primary); border: 2px solid #F0F0F0; padding: 40px; border-radius: 30px; }
+        .outcomes-box h3 { color: var(--primary-blue); margin-top: 0; border-bottom: 4px solid var(--accent-yellow); display: inline-block; font-size: 24px; font-weight: 800; }
+        .chart-box { background: var(--bg-primary); border: 2px solid #F0F0F0; padding: 30px; border-radius: 30px; display: flex; justify-content: center; align-items: center;}
         body.rtl ul { padding-right: 20px; padding-left: 0; }
 
-        /* Section 5: Level 2 Horizon */
-        .level2-footer { background: var(--dark-navy); color: white; padding: 50px; border-radius: 30px; text-align: center; }
-        .level2-footer h2 { color: var(--primary-teal); font-size: 2.2rem; margin-bottom: 30px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .footer-item { border-top: 2px solid var(--primary-teal); padding-top: 15px; }
-        .footer-item h5 { color: var(--accent-yellow); font-size: 1.1rem; margin: 0 0 10px 0; }
-        .footer-item p { font-size: 0.85rem; opacity: 0.8; }
+        /* ================= Curriculum Builder ================= */
+        #curriculum-builder {
+            font-family: 'Poppins', sans-serif; color: var(--text-primary);
+            margin: 80px 0; padding: 50px 0; border-top: 1px solid #E5E5E5;
+        }
+        body.rtl #curriculum-builder { font-family: 'Cairo', sans-serif; }
 
-        /* Responsive */
+        .cb-header { text-align: center; margin-bottom: 40px; }
+        .cb-title { font-size: 36px; font-weight: 800; color: var(--primary-blue); margin: 0; }
+        
+        .cb-progress-track { height: 8px; background: #E5E5E5; border-radius: 4px; margin-bottom: 40px; overflow: hidden; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cb-progress-bar { height: 100%; background: var(--primary-blue); width: 0%; transition: width 0.4s ease; border-radius: 4px; }
+
+        /* Stage List */
+        .cb-stage-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 60px; }
+        .cb-stage-card {
+            background: #FFFFFF; border: 2px solid #F0F0F0; border-radius: 20px; padding: 20px 32px;
+            display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease;
+        }
+        .cb-stage-card:hover { border-color: var(--blue-shadow); box-shadow: 0 8px 20px rgba(38, 183, 255, 0.1); }
+        .cb-stage-card.active { border-color: var(--primary-blue); background-color: #FFFFFF; box-shadow: 0 8px 25px rgba(38, 183, 255, 0.15); }
+
+        .cb-left { display: flex; align-items: center; gap: 24px; }
+        .cb-id { font-size: 24px; font-weight: 800; color: #CCCCCC; width: 40px; transition: color 0.2s; }
+        .cb-stage-card.active .cb-id { color: var(--primary-blue); }
+
+        .cb-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+        .cb-pill { background: var(--bg-secondary); color: var(--text-secondary); font-size: 14px; font-weight: 600; padding: 6px 16px; border-radius: 50px; }
+        .cb-stage-card.active .cb-pill { background: var(--blue-light); color: var(--primary-blue); }
+
+        .cb-qty-ctrl { display: flex; align-items: center; gap: 12px; background: var(--bg-secondary); padding: 4px 6px; border-radius: 50px; }
+        .cb-qty-btn {
+            width: 32px; height: 32px; border-radius: 50%; border: none;
+            background: #FFFFFF; color: var(--primary-blue); font-weight: 800; font-size: 18px;
+            cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .cb-qty-btn:hover { background: var(--primary-blue); color: white; }
+        .cb-qty-val { font-size: 18px; font-weight: 700; width: 24px; text-align: center; color: var(--text-primary); }
+        .cb-stage-card.active .cb-qty-ctrl { background: var(--blue-light); }
+
+        /* Bundle Result */
+        .cb-result-container { max-width: 900px; margin: 0 auto; }
+        .cb-empty { text-align: center; padding: 40px; border: 2px dashed #E0E0E0; border-radius: 20px; color: #999; }
+
+        .cb-bundle {
+            background: #FFFFFF; border-radius: 30px; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); 
+            display: none; flex-direction: column; border: 2px solid var(--primary-blue);
+        }
+
+        .cb-bundle-header-banner {
+            background: var(--primary-blue); color: #FFFFFF; text-align: center;
+            padding: 12px; font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        .cb-bundle-content-wrapper { display: flex; flex-direction: row; padding: 40px; gap: 40px; }
+        .cb-bundle-left-col { flex: 1; }
+        
+        .cb-bundle-title { font-size: 32px; font-weight: 800; color: var(--primary-blue); margin: 0 0 16px 0; line-height: 1.2; }
+        
+        .cb-badge { 
+            background: var(--accent-yellow); color: var(--text-primary); 
+            font-weight: 800; font-size: 13px; padding: 6px 14px; border-radius: 50px; 
+            box-shadow: 0 4px 10px var(--yellow-shadow); text-transform: uppercase;
+            display: inline-block; margin-bottom: 24px;
+        }
+
+        .cb-price-block { margin-bottom: 0; }
+        .cb-old { text-decoration: line-through; color: var(--price-red); font-weight: 600; font-size: 18px; display: block; margin-bottom: 4px; }
+        .cb-total-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 24px; }
+        .cb-currency { font-size: 24px; font-weight: 700; color: var(--primary-blue); }
+        .cb-amount { font-size: 64px; font-weight: 800; color: var(--primary-blue); line-height: 0.9; }
+        
+        .cb-save-tag-large { 
+            display: inline-block; background: var(--primary-blue); color: #FFFFFF; 
+            font-weight: 800; font-size: 18px; padding: 10px 20px; border-radius: 50px;
+            box-shadow: 0 4px 15px var(--blue-shadow);
+        }
+
+        .cb-bundle-right-col { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding-top: 10px; }
+        
+        .cb-features-container { margin-bottom: 30px; }
+        .cb-feat-group { margin-bottom: 16px; }
+        .cb-feat-row { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+        .cb-green-check { 
+            width: 24px; height: 24px; background: var(--green-success); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; flex-shrink: 0;
+        }
+        .cb-feat-desc { font-size: 12px; color: var(--text-light-gray); font-weight: 500; margin-left: 36px; line-height: 1.4; }
+
+        .cb-btn {
+            background: var(--accent-yellow); color: var(--text-primary); 
+            font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 20px;
+            width: 100%; max-width: 320px; padding: 18px; border: none; border-radius: 50px; 
+            cursor: pointer; transition: all 0.2s;
+            box-shadow: 0 10px 20px var(--yellow-shadow); align-self: flex-start;
+        }
+        .cb-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px var(--yellow-shadow); filter: brightness(1.02); }
+
+        body.rtl .cb-btn { align-self: flex-start; font-family: 'Cairo', sans-serif; }
+        body.rtl .cb-feat-desc { margin-left: 0; margin-right: 36px; }
+        body.rtl .cb-bundle-right-col { text-align: right; align-items: flex-start; }
+
+        /* Footer */
+        .level2-footer { background: var(--text-primary); color: white; padding: 60px; border-radius: 30px; text-align: center; }
+        .level2-footer h2 { color: var(--primary-blue); font-size: 32px; font-weight: 800; margin-bottom: 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .footer-item { border-top: 2px solid var(--primary-blue); padding-top: 20px; }
+        .footer-item h5 { color: var(--accent-yellow); font-size: 18px; margin: 0 0 10px 0; font-weight: 700; }
+        .footer-item p { font-size: 14px; opacity: 0.8; line-height: 1.6; }
+
+        /* Responsive Mobile */
         @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
             .metrics-grid, .loop-grid, .academic-row, .footer-grid { grid-template-columns: 1fr; }
-            .container { padding: 20px; }
-            .lang-switch-wrapper { position: relative; top: 0; right: 0; text-align: center; margin-bottom: 20px; }
-            body.rtl .lang-switch-wrapper { left: 0; }
+            .cb-bundle-content-wrapper { flex-direction: column; gap: 30px; padding: 30px; }
+            .cb-bundle-right-col { align-items: flex-start; text-align: left; padding-top: 0; }
+            .cb-btn { max-width: 100%; }
+            h1 { font-size: 32px; }
+            .cb-bundle-title { font-size: 28px; }
+            .cb-amount { font-size: 48px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    
     <div class="lang-switch-wrapper">
         <button class="lang-btn" onclick="toggleLanguage()">Switch to Arabic / العربية</button>
     </div>
@@ -203,7 +303,7 @@
     <section class="loop-section">
         <div class="loop-header">
             <h2 data-key="loopTitle">Internal Learning Loop Design</h2>
-            <p style="color: #576574;" data-key="loopSubtitle">A Scientific 5-Step Cycle for Guaranteed Retention</p>
+            <p style="color: #666;" data-key="loopSubtitle">A Scientific 5-Step Cycle for Guaranteed Retention</p>
         </div>
         <div class="loop-grid">
             <div class="loop-card">
@@ -226,7 +326,7 @@
                 <h4 data-key="loop4Title">Life Skills</h4>
                 <p data-key="loop4Desc">Practical Competency: Innovation, ICT & Global Culture</p>
             </div>
-            <div class="loop-card" style="background: var(--primary-teal); color: white;">
+            <div class="loop-card" style="background: var(--primary-blue); color: white;">
                 <span class="loop-icon">🏆</span>
                 <h4 style="color: white;" data-key="loop5Title">Final Test</h4>
                 <p style="color: white;" data-key="loop5Desc">Outcome Assessment & Proficiency Report</p>
@@ -234,21 +334,12 @@
         </div>
     </section>
 
-    <h3 class="stage-title" data-key="stageSectionTitle">5 Stages of Level 1 Content</h3>
-    <div class="stages-flex">
-        <div class="stage-item"><span class="stage-tag">S1</span><div class="stage-info"><span class="topic-pill" data-key="stage1a">Self-Intro</span><span class="topic-pill" data-key="stage1b">Family</span><span class="topic-pill" data-key="stage1c">Home</span></div></div>
-        <div class="stage-item"><span class="stage-tag">S2</span><div class="stage-info"><span class="topic-pill" data-key="stage2a">Abilities</span><span class="topic-pill" data-key="stage2b">Food</span><span class="topic-pill" data-key="stage2c">School</span></div></div>
-        <div class="stage-item"><span class="stage-tag">S3</span><div class="stage-info"><span class="topic-pill" data-key="stage3a">Health</span><span class="topic-pill" data-key="stage3b">Technology</span><span class="topic-pill" data-key="stage3c">Professions</span></div></div>
-        <div class="stage-item"><span class="stage-tag">S4</span><div class="stage-info"><span class="topic-pill" data-key="stage4a">Places</span><span class="topic-pill" data-key="stage4b">Transportation</span><span class="topic-pill" data-key="stage4c">Shopping</span></div></div>
-        <div class="stage-item"><span class="stage-tag">S5</span><div class="stage-info"><span class="topic-pill" data-key="stage5a">World View</span><span class="topic-pill" data-key="stage5b">Nature</span><span class="topic-pill" data-key="stage5c">Culture</span></div></div>
-    </div>
-
     <div class="academic-row">
         <div class="outcomes-box">
             <h3 data-key="acadBoxTitle">Academic Performance</h3>
-            <p style="font-size: 0.95rem;"><strong data-key="acadText1Bold">51Talk Academy L1</strong> <span data-key="acadText1">covers 100% of</span> <strong data-key="acadText2Bold">Saudi Public G4-G6</strong> <span data-key="acadText2">requirements and serves as a vital supplement for</span> <strong data-key="acadText3Bold">International G1-G2</strong> <span data-key="acadText3">curricula.</span></p>
-            <p style="font-size: 0.9rem; font-weight: bold; color: var(--primary-teal);" data-key="keyOutputs">Key Practical Outputs:</p>
-            <ul style="font-size: 0.85rem; padding-left: 20px;">
+            <p style="font-size: 16px;"><strong data-key="acadText1Bold">51Talk Academy L1</strong> <span data-key="acadText1">covers 100% of</span> <strong data-key="acadText2Bold">Saudi Public G4-G6</strong> <span data-key="acadText2">requirements and serves as a vital supplement for</span> <strong data-key="acadText3Bold">International G1-G2</strong> <span data-key="acadText3">curricula.</span></p>
+            <p style="font-size: 16px; font-weight: bold; color: var(--primary-blue);" data-key="keyOutputs">Key Practical Outputs:</p>
+            <ul style="font-size: 14px; padding-left: 20px; line-height: 1.8;">
                 <li data-key="outputLi1">Identify 800+ vocabulary across 20 global themes</li>
                 <li data-key="outputLi2">Write formatted blogs, party invitations, and reviews</li>
                 <li data-key="outputLi3">Master ICT literacy and internet safety skills</li>
@@ -256,13 +347,58 @@
             </ul>
         </div>
         <div class="chart-box">
-            <canvas id="radarChart" width="350" height="350"></canvas>
+            <canvas id="radarChart" width="380" height="380"></canvas>
+        </div>
+    </div>
+
+    <div id="curriculum-builder">
+        <div class="cb-header">
+            <h2 class="cb-title" id="cbMainTitle">Customize Your Learning Plan</h2>
+        </div>
+
+        <div class="cb-progress-track">
+            <div id="cbProgress" class="cb-progress-bar"></div>
+        </div>
+
+        <div id="cbList" class="cb-stage-list">
+            </div>
+
+        <div class="cb-result-container">
+            <div id="cbEmpty" class="cb-empty">
+                <h3 id="cbEmptyText">👇 Select stages above to build your bundle</h3>
+            </div>
+
+            <div id="cbBundle" class="cb-bundle">
+                <div class="cb-bundle-header-banner" id="cbBannerText">EXCLUSIVE BUNDLE OFFER</div>
+
+                <div class="cb-bundle-content-wrapper">
+                    <div class="cb-bundle-left-col">
+                        <h3 id="cbTitle" class="cb-bundle-title">Value Bundle</h3>
+                        <div id="cbBadge" class="cb-badge">BEST VALUE</div>
+                        
+                        <div class="cb-price-block">
+                            <span id="cbOld" class="cb-old">SAR 13,477</span>
+                            <div class="cb-total-row">
+                                <span class="cb-currency">SAR</span>
+                                <span id="cbCurrent" class="cb-amount">5,621</span>
+                            </div>
+                            <span class="cb-save-tag-large" id="cbSavingsText">YOU SAVE SAR 7,856</span>
+                        </div>
+                    </div>
+
+                    <div class="cb-bundle-right-col">
+                        <div class="cb-features-container" id="cbFeaturesList">
+                            </div>
+                        <button class="cb-btn" id="cbCheckoutBtn" onclick="alert('Proceed to Checkout')">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="level2-footer">
         <h2 data-key="footerTitle">Advancing to Level 2</h2>
-        <p style="opacity: 0.9; margin-bottom: 30px;" data-key="footerSubtitle">Transitioning from Basic Identification to Narrative Fluency (CEFR A2)</p>
+        <p style="opacity: 0.8; margin-bottom: 40px; font-size: 16px;" data-key="footerSubtitle">Transitioning from Basic Identification to Narrative Fluency (CEFR A2)</p>
         <div class="footer-grid">
             <div class="footer-item">
                 <h5 data-key="foot1Title">Linguistic Shift</h5>
@@ -280,8 +416,254 @@
     </div>
 </div>
 
+<script>
+    window.currentPage = 'L1'; 
+</script>
+
 <script src="lang-data.js"></script>
 <script src="lang-logic.js"></script>
+
+<script>
+(function() {
+    // === 1. Localized Data Store (Updated Features) ===
+    const i18n = {
+        en: {
+            title: "Customize Your Learning Plan",
+            empty: "👇 Add stages to build your package",
+            banner: "EXCLUSIVE BUNDLE OFFER",
+            savePrefix: "YOU SAVE",
+            btn: "Proceed to Checkout",
+            // Static Features with Descriptions
+            staticFeats: [
+                { t: "1-on-1 Online Classes", d: "Full focus on one student, real improvement guaranteed" },
+                { t: "CEFR-Based Curriculum", d: "International standard, measurable progress" },
+                { t: "Dedicated Learning Assistant", d: "We follow up. We track progress. Nothing is missed." }
+            ],
+            lessonDesc: "Real learning time, built for high school students",
+            bundles: {
+                1: { t: "Basics Package", b: "50% OFF" },
+                2: { t: "Development Package", b: "55% OFF" },
+                3: { t: "Application Package", b: "58% OFF" },
+                4: { t: "Advanced Use Package", b: "60% OFF" },
+                5: { t: "Mastery Package", b: "62% OFF" }
+            }
+        },
+        ar: {
+            title: "قم بتخصيص خطة التعلم الخاصة بك",
+            empty: "👇 أضف المراحل لبناء باقتك",
+            banner: "عرض الحزمة الحصرية",
+            savePrefix: "أنت توفر",
+            btn: "الذهاب للدفع",
+            staticFeats: [
+                { t: "دروس فردية أونلاين (1 على 1)", d: "تركيز كامل على الطالب ونتائج ملموسة" },
+                { t: "منهج بمعيار CEFR الدولي", d: "تقدم واضح ويمكن قياسه" },
+                { t: "مساعد تعليمي مخصص", d: "نحن نتابع التقدم خطوة بخطوة" }
+            ],
+            lessonDesc: "وقت كافٍ لتعلّم حقيقي، مناسب لطلاب الثانوية",
+            bundles: {
+                1: { t: "باقة الأساسيات", b: "خصم 50%" },
+                2: { t: "باقة التطوير", b: "خصم 55%" },
+                3: { t: "باقة التطبيق", b: "خصم 58%" },
+                4: { t: "باقة الاستخدام المتقدم", b: "خصم 60%" },
+                5: { t: "باقة الإتقان", b: "خصم 62%" }
+            }
+        }
+    };
+
+    // === 2. L1 Specific Data ===
+    const stages = [
+        { id: 1, label: "S1", tags: ["Self-Intro", "Family", "Home"] },
+        { id: 2, label: "S2", tags: ["Abilities", "Food", "School"] },
+        { id: 3, label: "S3", tags: ["Health", "Technology", "Professions"] },
+        { id: 4, label: "S4", tags: ["Places", "Transportation", "Shopping"] },
+        { id: 5, label: "S5", tags: ["World View", "Nature", "Culture"] }
+    ];
+
+    // === 3. Pricing Logic ===
+    const priceTable = {
+        1: { old: 4492, price: 2246 }, 
+        2: { old: 8985, price: 4050 }, 
+        3: { old: 13477, price: 5621 },
+        4: { old: 17970, price: 7121 },
+        5: { old: 22462, price: 8621 } 
+    };
+
+    let quantities = { 1: 1, 2: 1, 3: 1, 4: 0, 5: 0 };
+
+    function getLang() {
+        return document.body.classList.contains('rtl') ? 'ar' : 'en';
+    }
+
+    function renderList() {
+        const container = document.getElementById('cbList');
+        container.innerHTML = '';
+
+        stages.forEach(s => {
+            const qty = quantities[s.id] || 0;
+            const isActive = qty > 0;
+            const div = document.createElement('div');
+            div.className = `cb-stage-card ${isActive ? 'active' : ''}`;
+            
+            const pills = s.tags.map(t => `<span class="cb-pill">${t}</span>`).join('');
+
+            div.innerHTML = `
+                <div class="cb-left">
+                    <span class="cb-id">${s.label}</span>
+                    <div class="cb-pills">${pills}</div>
+                </div>
+                <div class="cb-qty-ctrl">
+                    <button class="cb-qty-btn" onclick="updateQty(${s.id}, -1)">-</button>
+                    <span class="cb-qty-val">${qty}</span>
+                    <button class="cb-qty-btn" onclick="updateQty(${s.id}, 1)">+</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    window.updateQty = function(id, change) {
+        if (!quantities[id]) quantities[id] = 0;
+        const newQty = quantities[id] + change;
+        if (newQty >= 0) {
+            quantities[id] = newQty;
+            renderList();
+            updateResult();
+        }
+    };
+
+    function updateResult() {
+        const lang = getLang();
+        const txt = i18n[lang];
+
+        let totalUnits = 0;
+        for (let key in quantities) totalUnits += quantities[key];
+
+        const progress = document.getElementById('cbProgress');
+        progress.style.width = Math.min((totalUnits / 5) * 100, 100) + '%';
+
+        const empty = document.getElementById('cbEmpty');
+        const bundle = document.getElementById('cbBundle');
+
+        document.getElementById('cbMainTitle').innerText = txt.title;
+        document.getElementById('cbEmptyText').innerText = txt.empty;
+        document.getElementById('cbBannerText').innerText = txt.banner;
+        document.getElementById('cbCheckoutBtn').innerText = txt.btn;
+
+        if (totalUnits === 0) {
+            empty.style.display = 'block';
+            bundle.style.display = 'none';
+            return;
+        }
+
+        empty.style.display = 'none';
+        bundle.style.display = 'flex';
+
+        let tier = totalUnits;
+        if (tier > 5) tier = 5; 
+        
+        let oldPrice = 0;
+        let currentPrice = 0;
+        
+        if (totalUnits <= 5) {
+            oldPrice = priceTable[totalUnits].old;
+            currentPrice = priceTable[totalUnits].price;
+        } else {
+            const scale = totalUnits / 5;
+            oldPrice = Math.round(priceTable[5].old * scale);
+            currentPrice = Math.round(priceTable[5].price * scale);
+        }
+
+        const savings = oldPrice - currentPrice;
+        const bundleInfo = txt.bundles[tier] || txt.bundles[5];
+
+        document.getElementById('cbBadge').innerText = bundleInfo.b;
+        document.getElementById('cbTitle').innerText = bundleInfo.t;
+        
+        document.getElementById('cbOld').innerText = 'SAR ' + oldPrice.toLocaleString();
+        document.getElementById('cbCurrent').innerText = currentPrice.toLocaleString();
+        
+        document.getElementById('cbSavingsText').innerText = `${txt.savePrefix} SAR ${savings.toLocaleString()}`;
+
+        // Render Features (Dynamic Lessons + Static Features)
+        const totalLessons = totalUnits * 25;
+        
+        // 1. Dynamic Lesson Feature
+        const lessonFeature = {
+            t: lang === 'ar' ? `${totalLessons} حصة | 50 دقيقة للحصة` : `${totalLessons} Lessons | 50 Minutes Each`,
+            d: txt.lessonDesc
+        };
+
+        // 2. Combine with static features
+        const allFeatures = [lessonFeature, ...txt.staticFeats];
+        
+        const featuresHtml = allFeatures.map(f => `
+            <div class="cb-feat-group">
+                <div class="cb-feat-row">
+                    <div class="cb-green-check">✔</div>
+                    <div>${f.t}</div>
+                </div>
+                <div class="cb-feat-desc">${f.d}</div>
+            </div>
+        `).join('');
+        document.getElementById('cbFeaturesList').innerHTML = featuresHtml;
+    }
+
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === "class") {
+                updateResult(); 
+                renderList(); 
+            }
+        });
+    });
+    observer.observe(document.body, { attributes: true });
+
+    renderList();
+    updateResult();
+
+})();
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        if (window.myRadarChart) window.myRadarChart.destroy();
+        
+        window.myRadarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Listening', 'Speaking', 'Reading', 'Writing', 'Grammar', 'Life Skills', 'Culture'],
+                datasets: [{
+                    label: 'L1 Mastery Level',
+                    data: [85, 80, 75, 70, 80, 75, 80],
+                    backgroundColor: 'rgba(38, 183, 255, 0.2)', // Brand Blue Opacity
+                    borderColor: '#26B7FF', // Brand Blue Solid
+                    pointBackgroundColor: '#26B7FF',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#26B7FF',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: { color: '#E5E5E5' },
+                        grid: { color: '#E5E5E5' },
+                        pointLabels: {
+                            font: { family: 'Poppins', size: 13, weight: '600' },
+                            color: '#333333'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
