@@ -5,284 +5,438 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>51Talk Academy: Level 4 Outcomes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        /* ================= 视觉规范系统 (Strict Visual Identity) ================= */
         :root {
-            --primary-red: #c0392b; 
-            --accent-orange: #e67e22;
-            --bg-neutral: #f9f9f9;
-            --text-main: #2c3e50;
-            --border-color: #dcdde1;
-            --white: #ffffff;
+            /* 核心色板 */
+            --primary-blue: #26B7FF;
+            --accent-yellow: #FDE700;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-light-gray: #999999;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F6F6F6;
+            --price-red: #FF4D4F; 
+            
+            /* 衍生辅助色 */
+            --blue-light: rgba(38, 183, 255, 0.08);
+            --blue-shadow: rgba(38, 183, 255, 0.2);
+            --yellow-shadow: rgba(253, 231, 0, 0.4);
+            --green-success: #4ADE80;
         }
         
         body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background: var(--bg-neutral); 
-            color: var(--text-main); 
+            font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif; 
+            background: var(--bg-secondary); 
+            color: var(--text-primary); 
             margin: 0; 
-            padding: 20px; 
+            padding: 40px 20px; 
             line-height: 1.6; 
-            transition: all 0.3s ease;
+            overflow-x: hidden;
         }
 
-        /* Arabic RTL Support */
-        body.rtl {
-            font-family: 'Cairo', sans-serif;
-            direction: rtl;
-        }
+        /* RTL Support */
+        body.rtl { font-family: 'Cairo', sans-serif; direction: rtl; }
 
-        .container { max-width: 1100px; margin: auto; background: #ffffff; padding: 50px; border-radius: 30px; box-shadow: 0 25px 60px rgba(192,57,43,0.1); position: relative; }
+        /* 容器规范 */
+        .container { 
+            max-width: 1140px; 
+            margin: 0 auto; 
+            background: var(--bg-primary); 
+            padding: 60px 50px; 
+            border-radius: 40px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.03); 
+            position: relative; 
+        }
         
-        /* Language Switch Button */
-        .lang-switch-wrapper {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-        body.rtl .lang-switch-wrapper {
-            right: auto;
-            left: 30px;
-        }
+        /* 语言切换按钮 */
+        .lang-switch-wrapper { position: absolute; top: 40px; right: 40px; z-index: 100; }
+        body.rtl .lang-switch-wrapper { right: auto; left: 40px; }
         .lang-btn {
-            background: white;
-            border: 2px solid var(--primary-red);
-            color: var(--primary-red);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
+            background: var(--bg-primary); 
+            border: 2px solid var(--primary-blue); 
+            color: var(--primary-blue);
+            padding: 10px 24px; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer; 
+            transition: all 0.3s; 
         }
-        .lang-btn:hover {
-            background: var(--primary-red);
-            color: white;
-        }
+        .lang-btn:hover { background: var(--primary-blue); color: white; box-shadow: 0 5px 15px var(--blue-shadow); }
 
-        header { text-align: center; margin-bottom: 50px; border-bottom: 4px solid var(--primary-red); padding-bottom: 20px; }
-        h1 { color: var(--primary-red); font-size: 3.2rem; margin: 0; text-transform: uppercase; }
-        .subtitle { color: #7f8c8d; font-size: 1.4rem; font-weight: 300; }
+        /* 头部样式 */
+        header { text-align: center; margin-bottom: 60px; margin-top: 20px; }
+        h1 { color: var(--primary-blue); font-size: 41px; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -1px; }
+        .subtitle { color: var(--text-secondary); font-size: 20px; font-weight: 400; margin-top: 0; }
 
-        /* Metric Cards */
-        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 50px; }
+        /* ================= Metric Cards ================= */
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 80px; }
         .metric-card { 
-            background: #fff; border: 1px solid var(--border-color); padding: 30px 15px; border-radius: 20px; 
-            text-align: center; transition: 0.3s; position: relative;
+            background: var(--bg-primary); 
+            border: 2px solid #F0F0F0; 
+            padding: 32px 20px; 
+            border-radius: 20px; 
+            text-align: center; 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+            position: relative;
         }
-        .metric-card:hover { transform: translateY(-10px); border-color: var(--primary-red); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .metric-card .num { font-size: 3rem; font-weight: 800; color: var(--primary-red); display: block; }
-        .metric-card .label { font-size: 0.9rem; font-weight: bold; color: #34495e; }
-
+        .metric-card:hover { 
+            border-color: var(--primary-blue); 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px var(--blue-shadow); 
+        }
+        .metric-card .num { font-size: 48px; font-weight: 800; color: var(--primary-blue); display: block; line-height: 1; margin-bottom: 10px; }
+        .metric-card .label { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        
         .hover-detail { 
-            display: none; position: absolute; top: 105%; left: 0; right: 0; 
-            background: #2c3e50; color: #fff; padding: 20px; border-radius: 15px; 
-            font-size: 0.85rem; text-align: left; z-index: 10;
+            display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); 
+            width: 280px; background: var(--text-primary); color: white; padding: 24px; 
+            border-radius: 20px; font-size: 14px; text-align: left; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        /* Fix text align in RTL hover */
         body.rtl .hover-detail { text-align: right; }
         .metric-card:hover .hover-detail { display: block; }
 
-        /* Loop Section */
-        .loop-section { background: #fdf2f2; border-left: 10px solid var(--primary-red); padding: 40px; border-radius: 0 20px 20px 0; margin-bottom: 60px; }
-        /* RTL Border Fix */
-        body.rtl .loop-section { border-left: none; border-right: 10px solid var(--primary-red); border-radius: 20px 0 0 20px; }
+        /* ================= Loop Section ================= */
+        .loop-section { 
+            background: var(--blue-light); 
+            border: 2px solid var(--primary-blue); 
+            padding: 50px; 
+            border-radius: 30px; 
+            margin-bottom: 80px; 
+        }
+        .loop-header { text-align: center; margin-bottom: 40px; }
+        .loop-header h2 { color: var(--primary-blue); font-size: 32px; font-weight: 800; margin: 0 0 10px 0; }
+        .loop-header p { color: var(--text-secondary); font-size: 16px; }
         
-        .loop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 30px; }
-        .loop-card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .loop-card h4 { color: var(--primary-red); margin-bottom: 8px; font-size: 1rem; }
-        .loop-card p { font-size: 0.8rem; color: #7f8c8d; }
+        .loop-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+        .loop-card { 
+            background: white; padding: 24px 16px; border-radius: 20px; text-align: center; 
+            border: 1px solid rgba(38, 183, 255, 0.2); box-shadow: 0 4px 10px rgba(0,0,0,0.03); 
+        }
+        .loop-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+        .loop-card h4 { color: var(--primary-blue); margin: 0 0 8px 0; font-size: 16px; font-weight: 800; }
+        .loop-card p { font-size: 12px; color: var(--text-secondary); margin: 0; font-weight: 500; line-height: 1.4; }
 
-        /* Stages Flex */
-        .stage-container { margin-bottom: 60px; }
-        .stage-row { display: grid; grid-template-columns: 100px 1fr; gap: 20px; align-items: center; margin-bottom: 15px; }
-        .stage-label { background: var(--primary-red); color: white; padding: 10px; border-radius: 10px; text-align: center; font-weight: bold; }
-        .pill-box { display: flex; flex-wrap: wrap; gap: 8px; }
-        .pill { background: #fee2e2; color: #991b1b; padding: 6px 15px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
+        /* ================= Academic / Radar (Positioned Above Builder) ================= */
+        .academic-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
+        .outcomes-box { background: var(--bg-primary); border: 2px solid #F0F0F0; padding: 40px; border-radius: 30px; }
+        .outcomes-box h3 { color: var(--primary-blue); margin-top: 0; border-bottom: 4px solid var(--accent-yellow); display: inline-block; font-size: 24px; font-weight: 800; }
+        .chart-box { background: var(--bg-primary); border: 2px solid #F0F0F0; padding: 30px; border-radius: 30px; display: flex; justify-content: center; align-items: center;}
+        body.rtl ul { padding-right: 20px; padding-left: 0; }
 
-        /* Academic & Chart */
-        .content-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
-        .text-content h3 { color: var(--primary-red); font-size: 1.8rem; border-left: 5px solid var(--accent-orange); padding-left: 15px; }
-        /* RTL Border Fix for h3 */
-        body.rtl .text-content h3 { border-left: none; border-right: 5px solid var(--accent-orange); padding-left: 0; padding-right: 15px; }
+        /* ================= Curriculum Builder ================= */
+        #curriculum-builder {
+            font-family: 'Poppins', sans-serif; color: var(--text-primary);
+            margin: 80px 0; padding: 50px 0; border-top: 1px solid #E5E5E5;
+        }
+        body.rtl #curriculum-builder { font-family: 'Cairo', sans-serif; }
+
+        .cb-header { text-align: center; margin-bottom: 40px; }
+        .cb-title { font-size: 36px; font-weight: 800; color: var(--primary-blue); margin: 0; }
         
-        .text-content ul { padding-left: 20px; }
-        body.rtl .text-content ul { padding-right: 20px; padding-left: 0; }
-        .text-content li { margin-bottom: 10px; font-size: 0.95rem; }
+        .cb-progress-track { height: 8px; background: #E5E5E5; border-radius: 4px; margin-bottom: 40px; overflow: hidden; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cb-progress-bar { height: 100%; background: var(--primary-blue); width: 0%; transition: width 0.4s ease; border-radius: 4px; }
 
-        /* Footer Horizon */
-        .horizon { background: #2c3e50; color: white; padding: 40px; border-radius: 25px; text-align: center; margin-top: 50px; }
-        .horizon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
-        .horizon-item h5 { color: var(--accent-orange); font-size: 1.1rem; margin-bottom: 10px; }
+        /* Stage List */
+        .cb-stage-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 60px; }
+        .cb-stage-card {
+            background: #FFFFFF; border: 2px solid #F0F0F0; border-radius: 20px; padding: 20px 32px;
+            display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease;
+        }
+        .cb-stage-card:hover { border-color: var(--blue-shadow); box-shadow: 0 8px 20px rgba(38, 183, 255, 0.1); }
+        .cb-stage-card.active { border-color: var(--primary-blue); background-color: #FFFFFF; box-shadow: 0 8px 25px rgba(38, 183, 255, 0.15); }
 
-        /* Responsive */
+        .cb-left { display: flex; align-items: center; gap: 24px; }
+        .cb-id { font-size: 24px; font-weight: 800; color: #CCCCCC; width: 40px; transition: color 0.2s; }
+        .cb-stage-card.active .cb-id { color: var(--primary-blue); }
+
+        .cb-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+        .cb-pill { background: var(--bg-secondary); color: var(--text-secondary); font-size: 14px; font-weight: 600; padding: 6px 16px; border-radius: 50px; }
+        .cb-stage-card.active .cb-pill { background: var(--blue-light); color: var(--primary-blue); }
+
+        .cb-qty-ctrl { display: flex; align-items: center; gap: 12px; background: var(--bg-secondary); padding: 4px 6px; border-radius: 50px; }
+        .cb-qty-btn {
+            width: 32px; height: 32px; border-radius: 50%; border: none;
+            background: #FFFFFF; color: var(--primary-blue); font-weight: 800; font-size: 18px;
+            cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .cb-qty-btn:hover { background: var(--primary-blue); color: white; }
+        .cb-qty-val { font-size: 18px; font-weight: 700; width: 24px; text-align: center; color: var(--text-primary); }
+        .cb-stage-card.active .cb-qty-ctrl { background: var(--blue-light); }
+
+        /* Bundle Result */
+        .cb-result-container { max-width: 900px; margin: 0 auto; }
+        .cb-empty { text-align: center; padding: 40px; border: 2px dashed #E0E0E0; border-radius: 20px; color: #999; }
+
+        .cb-bundle {
+            background: #FFFFFF; border-radius: 30px; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); 
+            display: none; flex-direction: column; border: 2px solid var(--primary-blue);
+        }
+
+        .cb-bundle-header-banner {
+            background: var(--primary-blue); color: #FFFFFF; text-align: center;
+            padding: 12px; font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        .cb-bundle-content-wrapper { display: flex; flex-direction: row; padding: 40px; gap: 40px; }
+        .cb-bundle-left-col { flex: 1; }
+        
+        .cb-bundle-title { font-size: 32px; font-weight: 800; color: var(--primary-blue); margin: 0 0 16px 0; line-height: 1.2; }
+        
+        .cb-badge { 
+            background: var(--accent-yellow); color: var(--text-primary); 
+            font-weight: 800; font-size: 13px; padding: 6px 14px; border-radius: 50px; 
+            box-shadow: 0 4px 10px var(--yellow-shadow); text-transform: uppercase;
+            display: inline-block; margin-bottom: 24px;
+        }
+
+        .cb-price-block { margin-bottom: 0; }
+        .cb-old { text-decoration: line-through; color: var(--price-red); font-weight: 600; font-size: 18px; display: block; margin-bottom: 4px; }
+        .cb-total-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 24px; }
+        .cb-currency { font-size: 24px; font-weight: 700; color: var(--primary-blue); }
+        .cb-amount { font-size: 64px; font-weight: 800; color: var(--primary-blue); line-height: 0.9; }
+        
+        .cb-save-tag-large { 
+            display: inline-block; background: var(--primary-blue); color: #FFFFFF; 
+            font-weight: 800; font-size: 18px; padding: 10px 20px; border-radius: 50px;
+            box-shadow: 0 4px 15px var(--blue-shadow);
+        }
+
+        .cb-bundle-right-col { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding-top: 10px; }
+        
+        .cb-features-container { margin-bottom: 30px; }
+        .cb-feat-group { margin-bottom: 16px; }
+        .cb-feat-row { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+        .cb-green-check { 
+            width: 24px; height: 24px; background: var(--green-success); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; flex-shrink: 0;
+        }
+        .cb-feat-desc { font-size: 12px; color: var(--text-light-gray); font-weight: 500; margin-left: 36px; line-height: 1.4; }
+
+        .cb-btn {
+            background: var(--accent-yellow); color: var(--text-primary); 
+            font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 20px;
+            width: 100%; max-width: 320px; padding: 18px; border: none; border-radius: 50px; 
+            cursor: pointer; transition: all 0.2s;
+            box-shadow: 0 10px 20px var(--yellow-shadow); align-self: flex-start;
+        }
+        .cb-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px var(--yellow-shadow); filter: brightness(1.02); }
+
+        body.rtl .cb-btn { align-self: flex-start; font-family: 'Cairo', sans-serif; }
+        body.rtl .cb-feat-desc { margin-left: 0; margin-right: 36px; }
+        body.rtl .cb-bundle-right-col { text-align: right; align-items: flex-start; }
+
+        /* Footer */
+        .level2-footer { background: var(--text-primary); color: white; padding: 60px; border-radius: 30px; text-align: center; }
+        .level2-footer h2 { color: var(--primary-blue); font-size: 32px; font-weight: 800; margin-bottom: 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .footer-item { border-top: 2px solid var(--primary-blue); padding-top: 20px; }
+        .footer-item h5 { color: var(--accent-yellow); font-size: 18px; margin: 0 0 10px 0; font-weight: 700; }
+        .footer-item p { font-size: 14px; opacity: 0.8; line-height: 1.6; }
+
+        /* Responsive Mobile */
         @media (max-width: 768px) {
-            .metrics-grid, .loop-grid, .content-wrap, .horizon-grid { grid-template-columns: 1fr; }
-            .container { padding: 20px; }
-            .lang-switch-wrapper { position: relative; top: 0; right: 0; text-align: center; margin-bottom: 20px; }
-            body.rtl .lang-switch-wrapper { left: 0; }
+            .container { padding: 30px 20px; }
+            .metrics-grid, .loop-grid, .academic-row, .footer-grid { grid-template-columns: 1fr; }
+            .cb-bundle-content-wrapper { flex-direction: column; gap: 30px; padding: 30px; }
+            .cb-bundle-right-col { align-items: flex-start; text-align: left; padding-top: 0; }
+            .cb-btn { max-width: 100%; }
+            h1 { font-size: 32px; }
+            .cb-bundle-title { font-size: 28px; }
+            .cb-amount { font-size: 48px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    
     <div class="lang-switch-wrapper">
         <button class="lang-btn" onclick="toggleLanguage()">Switch to Arabic / العربية</button>
     </div>
 
     <header>
-        <h1 data-key="L4_mainTitle">51Talk Academy L4</h1>
-        <p class="subtitle" data-key="L4_mainSubtitle">Advanced Fluency & Social Advocacy Mastery</p>
+        <h1 data-key="mainTitle">51Talk Academy L4</h1>
+        <p class="subtitle" data-key="mainSubtitle">Advanced Fluency & Social Advocacy Mastery</p>
     </header>
 
     <div class="metrics-grid">
         <div class="metric-card">
             <span class="num">1600+</span>
-            <span class="label" data-key="L4_metric1Label">Vocabulary Range 📖</span>
+            <span class="label" data-key="metric1Label">Vocabulary Range 📖</span>
             <div class="hover-detail">
-                <strong data-key="L4_metric1HoverTitle">Semantic Precision:</strong>
+                <strong data-key="metric1HoverTitle">Semantic Precision:</strong>
                 <ul>
-                    <li data-key="L4_metric1Li1">Crime & Justice Terminology</li>
-                    <li data-key="L4_metric1Li2">Scientific Hypotheses</li>
-                    <li data-key="L4_metric1Li3">Digital Ethics & AI Phrasal Verbs</li>
-                    <li data-key="L4_metric1Li4">Nuanced Emotional Adjectives</li>
+                    <li data-key="metric1Li1">Crime & Justice Terminology</li>
+                    <li data-key="metric1Li2">Scientific Hypotheses</li>
+                    <li data-key="metric1Li3">Digital Ethics & AI Phrasal Verbs</li>
+                    <li data-key="metric1Li4">Nuanced Emotional Adjectives</li>
                 </ul>
             </div>
         </div>
         <div class="metric-card">
             <span class="num">B1</span>
-            <span class="label" data-key="L4_metric2Label">CEFR Milestone 🏅</span>
+            <span class="label" data-key="metric2Label">CEFR Milestone 🏅</span>
             <div class="hover-detail">
-                <strong data-key="L4_metric2HoverTitle">Independence Level:</strong>
+                <strong data-key="metric2HoverTitle">Independence Level:</strong>
                 <ul>
-                    <li data-key="L4_metric2Li1">Can handle most travel situations</li>
-                    <li data-key="L4_metric2Li2">Describe experiences and ambitions</li>
-                    <li data-key="L4_metric2Li3">Give brief reasons for opinions</li>
-                    <li data-key="L4_metric2Li4">Synchronized with Saudi G9-G10</li>
+                    <li data-key="metric2Li1">Can handle most travel situations</li>
+                    <li data-key="metric2Li2">Describe experiences and ambitions</li>
+                    <li data-key="metric2Li3">Give brief reasons for opinions</li>
+                    <li data-key="metric2Li4">Synchronized with Saudi G9-G10</li>
                 </ul>
             </div>
         </div>
         <div class="metric-card">
             <span class="num">PET</span>
-            <span class="label" data-key="L4_metric3Label">Exam Target 🎯</span>
+            <span class="label" data-key="metric3Label">Exam Target 🎯</span>
             <div class="hover-detail">
-                <strong data-key="L4_metric3HoverTitle">B1 Preliminary Skills:</strong>
+                <strong data-key="metric3HoverTitle">B1 Preliminary Skills:</strong>
                 <ul>
-                    <li data-key="L4_metric3Li1">Reading: Identifying attitude & purpose</li>
-                    <li data-key="L4_metric3Li2">Writing: 100-word Articles & Stories</li>
-                    <li data-key="L4_metric3Li3">Listening: Following extended talk</li>
-                    <li data-key="L4_metric3Li4">Speaking: Discussion & Negotiation</li>
+                    <li data-key="metric3Li1">Reading: Identifying attitude & purpose</li>
+                    <li data-key="metric3Li2">Writing: 100-word Articles & Stories</li>
+                    <li data-key="metric3Li3">Listening: Following extended talk</li>
+                    <li data-key="metric3Li4">Speaking: Discussion & Negotiation</li>
                 </ul>
             </div>
         </div>
         <div class="metric-card">
             <span class="num">20</span>
-            <span class="label" data-key="L4_metric4Label">Thematic Units 🧩</span>
+            <span class="label" data-key="metric4Label">Thematic Units 🧩</span>
             <div class="hover-detail">
-                <strong data-key="L4_metric4HoverTitle">Core Clusters:</strong>
+                <strong data-key="metric4HoverTitle">Core Clusters:</strong>
                 <ul>
-                    <li data-key="L4_metric4Li1">Social Responsibility</li>
-                    <li data-key="L4_metric4Li2">Law & Order</li>
-                    <li data-key="L4_metric4Li3">Technological Breakthroughs</li>
-                    <li data-key="L4_metric4Li4">Career & Professionalism</li>
+                    <li data-key="metric4Li1">Social Responsibility</li>
+                    <li data-key="metric4Li2">Law & Order</li>
+                    <li data-key="metric4Li3">Technological Breakthroughs</li>
+                    <li data-key="metric4Li4">Career & Professionalism</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <section class="loop-section">
-        <h2 data-key="L4_loopTitle">Strategic Learning Architecture</h2>
-        <p data-key="L4_loopSubtitle">Developing the "Thinker's Voice" through systematic linguistic scaffolding.</p>
+        <div class="loop-header">
+            <h2 data-key="loopTitle">Strategic Learning Architecture</h2>
+            <p style="color: #666;" data-key="loopSubtitle">Developing the "Thinker's Voice" through systematic linguistic scaffolding.</p>
+        </div>
         <div class="loop-grid">
             <div class="loop-card">
-                <h4 data-key="L4_loop1Title">Nuanced Input</h4>
-                <p data-key="L4_loop1Desc">Reported Speech, Modals of Probability, 2nd Conditionals</p>
+                <span class="loop-icon">📥</span>
+                <h4 data-key="loop1Title">Nuanced Input</h4>
+                <p data-key="loop1Desc">Reported Speech, Modals of Probability, 2nd Conditionals</p>
+            </div>
+            <div class="loop-card" style="border-color: var(--accent-yellow);">
+                <span class="loop-icon">📤</span>
+                <h4 data-key="loop2Title">Critical Output</h4>
+                <p data-key="loop2Desc">Writing Online Profiles, Book Reviews & Informal Appeals</p>
             </div>
             <div class="loop-card">
-                <h4 data-key="L4_loop2Title">Critical Output</h4>
-                <p data-key="L4_loop2Desc">Writing Online Profiles, Book Reviews & Informal Appeals</p>
+                <span class="loop-icon">🔄</span>
+                <h4 data-key="loop3Title">Global Skills</h4>
+                <p data-key="loop3Desc">Identifying Reliable News & Conflict Resolution</p>
             </div>
             <div class="loop-card">
-                <h4 data-key="L4_loop3Title">Global Skills</h4>
-                <p data-key="L4_loop3Desc">Identifying Reliable News & Conflict Resolution</p>
+                <span class="loop-icon">🌟</span>
+                <h4 data-key="loop4Title">Reflective Culture</h4>
+                <p data-key="loop4Desc">Comparing NYC, Hollywood, and Professional Arts Schools</p>
             </div>
-            <div class="loop-card">
-                <h4 data-key="L4_loop4Title">Reflective Culture</h4>
-                <p data-key="L4_loop4Desc">Comparing NYC, Hollywood, and Professional Arts Schools</p>
-            </div>
-            <div class="loop-card" style="background: var(--primary-red); color: white;">
-                <h4 style="color:white" data-key="L4_loop5Title">Advocacy</h4>
-                <p style="color:white" data-key="L4_loop5Desc">Using English to express surprise, disbelief & social stance</p>
+            <div class="loop-card" style="background: var(--primary-blue); color: white;">
+                <span class="loop-icon">🏆</span>
+                <h4 style="color: white;" data-key="loop5Title">Advocacy</h4>
+                <p style="color: white;" data-key="loop5Desc">Using English to express surprise, disbelief & social stance</p>
             </div>
         </div>
     </section>
 
-    <div class="stage-container">
-        <div class="stage-row">
-            <div class="stage-label">S1 (U1-4)</div>
-            <div class="pill-box">
-                <span class="pill" data-key="L4_s1a">Fashion & Music Adverbs</span><span class="pill" data-key="L4_s1b">Past Continuous Narrative</span><span class="pill" data-key="L4_s1c">Comparatives (not as...as)</span>
-            </div>
-        </div>
-        <div class="stage-row">
-            <div class="stage-label">S2 (U5-8)</div>
-            <div class="pill-box">
-                <span class="pill" data-key="L4_s2a">Crime & Justice</span><span class="pill" data-key="L4_s2b">Reflexive Pronouns</span><span class="pill" data-key="L4_s2c">Future: be going to vs Continuous</span>
-            </div>
-        </div>
-        <div class="stage-row">
-            <div class="stage-label">S3 (U9-12)</div>
-            <div class="pill-box">
-                <span class="pill" data-key="L4_s3a">Present Perfect (for/since)</span><span class="pill" data-key="L4_s3b">Will for Prediction</span><span class="pill" data-key="L4_s3c">Modals of Probability</span>
-            </div>
-        </div>
-        <div class="stage-row">
-            <div class="stage-label">S4 (U13-16)</div>
-            <div class="pill-box">
-                <span class="pill" data-key="L4_s4a">Relative Clauses</span><span class="pill" data-key="L4_s4b">Passive Voice (Present)</span><span class="pill" data-key="L4_s4c">Zero & 1st Conditionals</span>
-            </div>
-        </div>
-        <div class="stage-row">
-            <div class="stage-label">S5 (U17-20)</div>
-            <div class="pill-box">
-                <span class="pill" data-key="L4_s5a">Reported Commands & Speech</span><span class="pill" data-key="L4_s5b">2nd Conditional (Hypothetical)</span><span class="pill" data-key="L4_s5c">Past Simple Passive</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-wrap">
-        <div class="text-content">
-            <h3 data-key="L4_acadBoxTitle">Intellectual Outcomes</h3>
-            <ul>
-                <li><strong data-key="L4_acadLi1Bold">Complex Narrative Mastery:</strong> <span data-key="L4_acadLi1">Ability to write creative stories and structured biographies with advanced time markers.</span></li>
-                <li><strong data-key="L4_acadLi2Bold">Ethical Reasoning:</strong> <span data-key="L4_acadLi2">Discussing social issues like crime, punishment, and environmental responsibility using specific vocabulary.</span></li>
-                <li><strong data-key="L4_acadLi3Bold">Hypothetical Thinking:</strong> <span data-key="L4_acadLi3">Utilizing Second Conditionals to discuss "what if" scenarios and scientific experiments.</span></li>
-                <li><strong data-key="L4_acadLi4Bold">Media Literacy:</strong> <span data-key="L4_acadLi4">Identifying reliable news sources and expressing personal surprise or disbelief toward illusions.</span></li>
+    <div class="academic-row">
+        <div class="outcomes-box">
+            <h3 data-key="acadBoxTitle">Intellectual Outcomes</h3>
+            <p style="font-size: 16px;">
+                <strong data-key="acadText1Bold">51Talk Academy L4</strong> 
+                <span data-key="acadText1">shifts focus from description to persuasion and ethics. It synchronizes with</span> 
+                <strong data-key="acadText2Bold">Saudi G9-G10</strong> 
+                <span data-key="acadText2">standards.</span>
+            </p>
+            <p style="font-size: 16px; font-weight: bold; color: var(--primary-blue);" data-key="keyOutputs">Level 4 Milestones:</p>
+            <ul style="font-size: 14px; padding-left: 20px; line-height: 1.8;">
+                <li data-key="outputLi1">Ability to write creative stories and structured biographies with advanced time markers.</li>
+                <li data-key="outputLi2">Discussing social issues like crime, punishment, and environmental responsibility using specific vocabulary.</li>
+                <li data-key="outputLi3">Utilizing Second Conditionals to discuss "what if" scenarios and scientific experiments.</li>
+                <li data-key="outputLi4">Identifying reliable news sources and expressing personal surprise or disbelief toward illusions.</li>
             </ul>
         </div>
         <div class="chart-box">
-            <canvas id="radarChart" width="400" height="400"></canvas>
+            <canvas id="radarChart" width="380" height="380"></canvas>
         </div>
     </div>
 
-    <div class="horizon">
-        <h2 data-key="L4_footerTitle">The Path to Level 5</h2>
-        <p data-key="L4_footerSubtitle">Entering B1+ Intermediate Mastery: Precision, Rhetoric, and Professional Polish</p>
-        <div class="horizon-grid">
-            <div class="horizon-item">
-                <h5 data-key="L4_foot1Title">Rhetorical Power</h5>
-                <p data-key="L4_foot1Desc">Learning to persuade, negotiate complex deals, and use English for debate.</p>
+    <div id="curriculum-builder">
+        <div class="cb-header">
+            <h2 class="cb-title" id="cbMainTitle">Customize Your Learning Plan</h2>
+        </div>
+
+        <div class="cb-progress-track">
+            <div id="cbProgress" class="cb-progress-bar"></div>
+        </div>
+
+        <div id="cbList" class="cb-stage-list">
             </div>
-            <div class="horizon-item">
-                <h5 data-key="L4_foot2Title">Advanced Syntax</h5>
-                <p data-key="L4_foot2Desc">Mastering Perfect Passives and complex Subordinate Clauses for academic writing.</p>
+
+        <div class="cb-result-container">
+            <div id="cbEmpty" class="cb-empty">
+                <h3 id="cbEmptyText">👇 Select stages above to build your bundle</h3>
             </div>
-            <div class="horizon-item">
-                <h5 data-key="L4_foot3Title">PET Final Target</h5>
-                <p data-key="L4_foot3Desc">Achieving a high-pass in the Cambridge PET, proving B1+ competency for global schools.</p>
+
+            <div id="cbBundle" class="cb-bundle">
+                <div class="cb-bundle-header-banner" id="cbBannerText">EXCLUSIVE BUNDLE OFFER</div>
+
+                <div class="cb-bundle-content-wrapper">
+                    <div class="cb-bundle-left-col">
+                        <h3 id="cbTitle" class="cb-bundle-title">Value Bundle</h3>
+                        <div id="cbBadge" class="cb-badge">BEST VALUE</div>
+                        
+                        <div class="cb-price-block">
+                            <span id="cbOld" class="cb-old">SAR 13,477</span>
+                            <div class="cb-total-row">
+                                <span class="cb-currency">SAR</span>
+                                <span id="cbCurrent" class="cb-amount">5,621</span>
+                            </div>
+                            <span class="cb-save-tag-large" id="cbSavingsText">YOU SAVE SAR 7,856</span>
+                        </div>
+                    </div>
+
+                    <div class="cb-bundle-right-col">
+                        <div class="cb-features-container" id="cbFeaturesList">
+                            </div>
+                        <button class="cb-btn" id="cbCheckoutBtn" onclick="alert('Proceed to Checkout')">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="level2-footer">
+        <h2 data-key="footerTitle">The Path to Level 5</h2>
+        <p style="opacity: 0.8; margin-bottom: 40px; font-size: 16px;" data-key="footerSubtitle">Entering B1+ Intermediate Mastery: Precision, Rhetoric, and Professional Polish</p>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h5 data-key="foot1Title">Rhetorical Power</h5>
+                <p data-key="foot1Desc">Learning to persuade, negotiate complex deals, and use English for debate.</p>
+            </div>
+            <div class="footer-item">
+                <h5 data-key="foot2Title">Advanced Syntax</h5>
+                <p data-key="foot2Desc">Mastering Perfect Passives and complex Subordinate Clauses for academic writing.</p>
+            </div>
+            <div class="footer-item">
+                <h5 data-key="foot3Title">PET Final Target</h5>
+                <p data-key="foot3Desc">Achieving a high-pass in the Cambridge PET, proving B1+ competency for global schools.</p>
             </div>
         </div>
     </div>
@@ -291,8 +445,251 @@
 <script>
     window.currentPage = 'L4'; 
 </script>
+
 <script src="lang-data.js"></script>
 <script src="lang-logic.js"></script>
+
+<script>
+(function() {
+    // === 1. Localized Data Store (Updated Features) ===
+    const i18n = {
+        en: {
+            title: "Customize Your Learning Plan",
+            empty: "👇 Add stages to build your package",
+            banner: "EXCLUSIVE BUNDLE OFFER",
+            savePrefix: "YOU SAVE",
+            btn: "Proceed to Checkout",
+            // Static Features with Descriptions
+            staticFeats: [
+                { t: "1-on-1 Online Classes", d: "Full focus on one student, real improvement guaranteed" },
+                { t: "CEFR-Based Curriculum", d: "International standard, measurable progress" },
+                { t: "Dedicated Learning Assistant", d: "We follow up. We track progress. Nothing is missed." }
+            ],
+            lessonDesc: "Real learning time, built for high school students",
+            bundles: {
+                1: { t: "Basics Package", b: "50% OFF" },
+                2: { t: "Development Package", b: "55% OFF" },
+                3: { t: "Application Package", b: "58% OFF" },
+                4: { t: "Advanced Use Package", b: "60% OFF" },
+                5: { t: "Mastery Package", b: "62% OFF" }
+            }
+        },
+        ar: {
+            title: "قم بتخصيص خطة التعلم الخاصة بك",
+            empty: "👇 أضف المراحل لبناء باقتك",
+            banner: "عرض الحزمة الحصرية",
+            savePrefix: "أنت توفر",
+            btn: "الذهاب للدفع",
+            staticFeats: [
+                { t: "دروس فردية أونلاين (1 على 1)", d: "تركيز كامل على الطالب ونتائج ملموسة" },
+                { t: "منهج بمعيار CEFR الدولي", d: "تقدم واضح ويمكن قياسه" },
+                { t: "مساعد تعليمي مخصص", d: "نحن نتابع التقدم خطوة بخطوة" }
+            ],
+            lessonDesc: "وقت كافٍ لتعلّم حقيقي، مناسب لطلاب الثانوية",
+            bundles: {
+                1: { t: "باقة الأساسيات", b: "خصم 50%" },
+                2: { t: "باقة التطوير", b: "خصم 55%" },
+                3: { t: "باقة التطبيق", b: "خصم 58%" },
+                4: { t: "باقة الاستخدام المتقدم", b: "خصم 60%" },
+                5: { t: "باقة الإتقان", b: "خصم 62%" }
+            }
+        }
+    };
+
+    // === 2. L4 Specific Data ===
+    const stages = [
+        { id: 1, label: "S1", tags: ["Fashion & Music Adverbs", "Past Continuous Narrative", "Comparatives"] },
+        { id: 2, label: "S2", tags: ["Crime & Justice", "Reflexive Pronouns", "Future: going to vs Continuous"] },
+        { id: 3, label: "S3", tags: ["Present Perfect", "Will for Prediction", "Modals of Probability"] },
+        { id: 4, label: "S4", tags: ["Relative Clauses", "Passive Voice (Present)", "Zero & 1st Conditionals"] },
+        { id: 5, label: "S5", tags: ["Reported Commands", "2nd Conditional (Hypothetical)", "Past Simple Passive"] }
+    ];
+
+    // === 3. Pricing Logic ===
+    const priceTable = {
+        1: { old: 4492, price: 2246 }, 
+        2: { old: 8985, price: 4050 }, 
+        3: { old: 13477, price: 5621 },
+        4: { old: 17970, price: 7121 },
+        5: { old: 22462, price: 8621 } 
+    };
+
+    let quantities = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
+    function getLang() {
+        return document.body.classList.contains('rtl') ? 'ar' : 'en';
+    }
+
+    function renderList() {
+        const container = document.getElementById('cbList');
+        container.innerHTML = '';
+
+        stages.forEach(s => {
+            const qty = quantities[s.id] || 0;
+            const isActive = qty > 0;
+            const div = document.createElement('div');
+            div.className = `cb-stage-card ${isActive ? 'active' : ''}`;
+            
+            const pills = s.tags.map(t => `<span class="cb-pill">${t}</span>`).join('');
+
+            div.innerHTML = `
+                <div class="cb-left">
+                    <span class="cb-id">${s.label}</span>
+                    <div class="cb-pills">${pills}</div>
+                </div>
+                <div class="cb-qty-ctrl">
+                    <button class="cb-qty-btn" onclick="updateQty(${s.id}, -1)">-</button>
+                    <span class="cb-qty-val">${qty}</span>
+                    <button class="cb-qty-btn" onclick="updateQty(${s.id}, 1)">+</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    window.updateQty = function(id, change) {
+        if (!quantities[id]) quantities[id] = 0;
+        const newQty = quantities[id] + change;
+        if (newQty >= 0) {
+            quantities[id] = newQty;
+            renderList();
+            updateResult();
+        }
+    };
+
+    function updateResult() {
+        const lang = getLang();
+        const txt = i18n[lang];
+
+        let totalUnits = 0;
+        for (let key in quantities) totalUnits += quantities[key];
+
+        const progress = document.getElementById('cbProgress');
+        progress.style.width = Math.min((totalUnits / 5) * 100, 100) + '%';
+
+        const empty = document.getElementById('cbEmpty');
+        const bundle = document.getElementById('cbBundle');
+
+        document.getElementById('cbMainTitle').innerText = txt.title;
+        document.getElementById('cbEmptyText').innerText = txt.empty;
+        document.getElementById('cbBannerText').innerText = txt.banner;
+        document.getElementById('cbCheckoutBtn').innerText = txt.btn;
+
+        if (totalUnits === 0) {
+            empty.style.display = 'block';
+            bundle.style.display = 'none';
+            return;
+        }
+
+        empty.style.display = 'none';
+        bundle.style.display = 'flex';
+
+        let tier = totalUnits;
+        if (tier > 5) tier = 5; 
+        
+        let oldPrice = 0;
+        let currentPrice = 0;
+        
+        if (totalUnits <= 5) {
+            oldPrice = priceTable[totalUnits].old;
+            currentPrice = priceTable[totalUnits].price;
+        } else {
+            const scale = totalUnits / 5;
+            oldPrice = Math.round(priceTable[5].old * scale);
+            currentPrice = Math.round(priceTable[5].price * scale);
+        }
+
+        const savings = oldPrice - currentPrice;
+        const bundleInfo = txt.bundles[tier] || txt.bundles[5];
+
+        document.getElementById('cbBadge').innerText = bundleInfo.b;
+        document.getElementById('cbTitle').innerText = bundleInfo.t;
+        
+        document.getElementById('cbOld').innerText = 'SAR ' + oldPrice.toLocaleString();
+        document.getElementById('cbCurrent').innerText = currentPrice.toLocaleString();
+        
+        document.getElementById('cbSavingsText').innerText = `${txt.savePrefix} SAR ${savings.toLocaleString()}`;
+
+        // Render Features (Dynamic Lessons + Static Features)
+        const totalLessons = totalUnits * 25;
+        
+        // 1. Dynamic Lesson Feature
+        const lessonFeature = {
+            t: lang === 'ar' ? `${totalLessons} حصة | 50 دقيقة للحصة` : `${totalLessons} Lessons | 50 Minutes Each`,
+            d: txt.lessonDesc
+        };
+
+        // 2. Combine with static features
+        const allFeatures = [lessonFeature, ...txt.staticFeats];
+        
+        const featuresHtml = allFeatures.map(f => `
+            <div class="cb-feat-group">
+                <div class="cb-feat-row">
+                    <div class="cb-green-check">✔</div>
+                    <div>${f.t}</div>
+                </div>
+                <div class="cb-feat-desc">${f.d}</div>
+            </div>
+        `).join('');
+        document.getElementById('cbFeaturesList').innerHTML = featuresHtml;
+    }
+
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === "class") {
+                updateResult(); 
+                renderList(); 
+            }
+        });
+    });
+    observer.observe(document.body, { attributes: true });
+
+    renderList();
+    updateResult();
+
+})();
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        if (window.myRadarChart) window.myRadarChart.destroy();
+        
+        window.myRadarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Listening', 'Speaking', 'Reading', 'Writing', 'Grammar', 'Life Skills', 'Culture'],
+                datasets: [{
+                    label: 'L4 Mastery Level',
+                    data: [95, 90, 85, 85, 90, 90, 85], // Adjusted for L4 profile
+                    backgroundColor: 'rgba(38, 183, 255, 0.2)', 
+                    borderColor: '#26B7FF', 
+                    pointBackgroundColor: '#26B7FF',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#26B7FF',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: { color: '#E5E5E5' },
+                        grid: { color: '#E5E5E5' },
+                        pointLabels: {
+                            font: { family: 'Poppins', size: 13, weight: '600' },
+                            color: '#333333'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
